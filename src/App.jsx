@@ -20,7 +20,7 @@ function App() {
     const values = crypto.getRandomValues(new Uint8Array(length));
     return values.reduce((acc, x) => acc + possible[x % possible.length], "");
   }
-  const sha256 = async (plain) => {
+  const sha256 = (plain) => {
     const encoder = new TextEncoder()
     const data = encoder.encode(plain)
     return window.crypto.subtle.digest('SHA-256', data)
@@ -87,9 +87,9 @@ function App() {
     });}
     
 
-  async function addListener() {
+  function addListener() {
     const codeVerifier  = generateRandomString(64);
-    const hashed = await sha256(codeVerifier)
+    const hashed = sha256(codeVerifier)
     const codeChallenge = base64encode(hashed);
     const scope = 'user-read-private user-read-email';
     const authUrl = new URL("https://accounts.spotify.com/authorize");
