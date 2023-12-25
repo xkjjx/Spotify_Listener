@@ -84,7 +84,10 @@ function App() {
         uri: data.uri,
         link: data.external_urls.spotify,
       }]);
-    });}
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
     
 
   function addListener() {
